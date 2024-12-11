@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
+import Script from "next/script";
 
 const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
@@ -21,6 +22,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <Script src="https://kit.fontawesome.com/cbef3dd862.js"></Script>
+      </head>
       <body className={`${ibmPlexMono.className} antialiased`}>
         <Header />
         {children}
@@ -46,10 +50,10 @@ function Header() {
             Hammad Majid
           </Link>
           <button className="block sm:hidden" id="open-button">
-            {/* <Fragment set:html={icons.barsBottomRight} /> */}
+            <i className="fa-solid fa-bars"></i>
           </button>
           <button className="hidden sm:hidden" id="close-button">
-            {/* <Fragment set:html={icons.xMark} /> */}
+            <i className="fa-solid fa-xmark"></i>
           </button>
         </div>
         <nav id="nav-menu" className="hidden sm:block pt-4 sm:pt-0">
