@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Octokit } from "octokit";
 
 async function getLastCommit() {
@@ -21,8 +22,9 @@ async function getLastCommit() {
     if (data.length > 0) {
       const lastCommit = data[0];
       return {
+        url: lastCommit.html_url,
         hash: lastCommit.sha.slice(0, 7), // Short commit hash
-        date: new Date(lastCommit.commit.author?.date || "").toLocaleString(),
+        date: new Date(lastCommit.commit.author?.date || "").toUTCString(),
       };
     }
   } catch (error) {
@@ -32,19 +34,21 @@ async function getLastCommit() {
 }
 
 export async function Footer() {
-  const currentYear = new Date().getFullYear();
-
   const commitInfo = await getLastCommit();
 
   return (
     <footer className="p-4 text-center border-t-2 border-light-border">
       <div className="container mx-auto">
         <p className="text-sm text-light-text-secondary">
-          © {currentYear} Hammad Majid
+
+          <Link href="/meta#license"
+            className="hover:text-light-accent focus:outline-none focus:text-light-accent"
+          >Unlicensed</Link> by Hammad Majid.
         </p>
         {commitInfo && (
           <p className="text-xs text-light-text-secondary mt-2">
-            Last built on {commitInfo.hash} at {commitInfo.date}
+            Last built on <Link href={commitInfo.url}>{commitInfo.hash}</Link>{" "}
+            at {commitInfo.date}
           </p>
         )}
       </div>
