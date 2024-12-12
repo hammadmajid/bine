@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
-import Link from "next/link";
 import Script from "next/script";
+import { Navbar } from "@/components/navbar";
 
 const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
@@ -25,52 +25,10 @@ export default function RootLayout({
       <head>
         <Script src="https://kit.fontawesome.com/cbef3dd862.js"></Script>
       </head>
-      <body className={`${ibmPlexMono.className} antialiased`}>
-        <Header />
+      <body className={`${ibmPlexMono.className} antialiased max-w-screen-lg mx-auto`}>
+        <Navbar />
         {children}
       </body>
     </html>
-  );
-}
-
-function Header() {
-  const pages: string[] = ["Posts", "Projects", "Contact", "About"];
-
-  return (
-    <>
-      <a
-        href="#main-content"
-        className="absolute -top-12 left-0 p-4 z-40 bg-light-body text-light-text-primary transition-all focus:top-0"
-      >
-        Skip to content
-      </a>
-      <header className="flex flex-col sm:flex-row justify-between items-center p-4 border-b-2 border-light-border">
-        <div className="w-full flex flex-row justify-between items-center">
-          <Link href="/" className="text-nowrap block font-medium text-xl">
-            Hammad Majid
-          </Link>
-          <button className="block sm:hidden" id="open-button">
-            <i className="fa-solid fa-bars"></i>
-          </button>
-          <button className="hidden sm:hidden" id="close-button">
-            <i className="fa-solid fa-xmark"></i>
-          </button>
-        </div>
-        <nav id="nav-menu" className="hidden sm:block pt-4 sm:pt-0">
-          <ul className="text-center space-y-4 sm:space-y-0 sm:flex sm:space-x-4">
-            {pages.map((page: string) => (
-              <li key={page}>
-                <Link
-                  href={`/${page.toLowerCase()}`}
-                  className="hover:text-light-accent"
-                >
-                  {page}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </header>
-    </>
   );
 }
