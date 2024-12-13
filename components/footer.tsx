@@ -24,7 +24,9 @@ async function getLastCommit() {
       return {
         url: lastCommit.html_url,
         hash: lastCommit.sha.slice(0, 7), // Short commit hash
-        date: new Date(lastCommit.commit.author?.date || "").toUTCString(),
+        date: new Date(lastCommit.commit.author?.date || "")
+          .toISOString()
+          .split("T")[0], // Date in YYYY-MM-DD format
       };
     }
   } catch (error) {
@@ -37,18 +39,33 @@ export async function Footer() {
   const commitInfo = await getLastCommit();
 
   return (
-    <footer className="p-4 text-center border-t-2 border-light-border">
+    <footer className="p-4 pb-10 text-center border-t-2 border-light-border">
       <div className="container mx-auto">
         <p className="text-sm text-light-text-secondary">
-
-          <Link href="/meta#license"
+          <Link
+            href="/meta#license"
             className="hover:text-light-accent focus:outline-none focus:text-light-accent"
-          >Unlicensed</Link> by Hammad Majid.
+          >
+            Unlicensed
+          </Link>{" "}
+          by Hammad Majid.
         </p>
         {commitInfo && (
           <p className="text-xs text-light-text-secondary mt-2">
-            Last built on <Link href={commitInfo.url}>{commitInfo.hash}</Link>{" "}
-            at {commitInfo.date}
+            Last built on{" "}
+            <Link
+              href={commitInfo.url}
+              className="hover:text-light-accent focus:outline-none focus:text-light-accent"
+            >
+              {commitInfo.hash}
+            </Link>{" "}
+            at {commitInfo.date} with{" "}
+            <Link
+              href="https://nextjs.org/"
+              className="hover:text-light-accent focus:outline-none focus:text-light-accent"
+            >
+              NextJs
+            </Link>
           </p>
         )}
       </div>
