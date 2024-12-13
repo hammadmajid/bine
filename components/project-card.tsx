@@ -8,33 +8,33 @@ interface ProjectCardProps {
 
 export default function ProjectsCard({ project }: ProjectCardProps) {
   return (
-    <div className="shadow-xl space-y-2 hover:shadow-2xl hover:tra transition-all rounded-md p-4">
-      <div className="flex flex-row items-center justify-between">
-        <h2 className="font-semibold text-lg">{project.name}</h2>
-        <div className="flex flex-row gap-1">
-          <a href={project.github} className="w-max hover:fill-light-accent">
-            <Github />
+    <div className="shadow-xl hover:shadow-2xl transition-all rounded-md p-6 flex flex-col h-full">
+      <div className="flex flex-row items-center justify-between mb-4">
+        <h3 className="font-semibold">{project.name}</h3>
+        <div className="flex flex-row gap-2">
+          <a href={project.github} className="w-max hover:text-light-accent">
+            <Github size={20} />
           </a>
           {project.homepage && (
             <Link
               href={project.homepage}
-              className="w-max hover:fill-light-accent"
+              className="w-max hover:text-light-accent"
             >
-              <Globe />
+              <Globe size={20} />
             </Link>
           )}
         </div>
       </div>
-      <p>{project.description}</p>
-      <ul className="flex gap-2">
+      <p className="flex-grow mb-4">{project.description}</p>
+      <ul className="flex flex-wrap gap-2">
         {project.topics &&
-          project.topics.map((tag) => (
-            <li key={tag}>
+          project.topics.map((topics) => (
+            <li key={topics}>
               <Link
-                href={`/projects/?${tag}`}
-                className="text-light-accent hover:text-light-accent-hover"
+                href={`/projects/?${topics}`}
+                className="text-light-accent hover:text-light-accent-hover text-sm bg-gray-100 px-2 py-1 rounded"
               >
-                {tag}
+                {topics}
               </Link>
             </li>
           ))}

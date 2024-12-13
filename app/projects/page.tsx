@@ -19,8 +19,8 @@ export default async function ProjectsPage() {
 
   return (
     <main id="main-content" className="p-8 space-y-4">
-      <h1 className="text-3xl font-bold">Projects</h1>
-      <section className="grid md:grid-cols-2 place-items-center gap-4">
+      <h1 className="text-2xl font-bold">Projects</h1>
+      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredRepos.map((project) => (
           <ProjectsCard key={project.name} project={project} />
         ))}
