@@ -6,7 +6,7 @@ import { Menu, X } from "lucide-react";
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const pages: string[] = ["Posts", "Projects", "Contact", "About"];
+  const pages: string[] = ["Links", "Projects", "Contact", "About"];
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
