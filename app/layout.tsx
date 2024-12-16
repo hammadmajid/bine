@@ -24,12 +24,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="h-full">
       <body
-        className={`${ibmPlexMono.className} antialiased max-w-screen-lg mx-auto`}
+        className={`${ibmPlexMono.className} h-full flex flex-col antialiased max-w-screen-lg mx-auto`}
       >
         <Navbar />
-        {children}
+        <main className="px-4 py-6 flex-grow space-y-2">{children}</main>
         <Footer />
       </body>
     </html>
