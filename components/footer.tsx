@@ -41,7 +41,7 @@ export async function Footer() {
   return (
     <footer className="p-4 pb-10 text-center border-t-2 border-light-border">
       <div className="container mx-auto">
-        <p className="text-sm text-light-text-secondary">
+        <p className="text-sm ">
           <Link
             href="/meta#license"
             className="hover:text-light-accent focus:outline-none focus:text-light-accent"
@@ -51,7 +51,7 @@ export async function Footer() {
           by Hammad Majid.
         </p>
         {commitInfo && (
-          <p className="text-xs text-light-text-secondary mt-2">
+          <p className="text-xs  mt-2">
             Last built on{" "}
             <Link
               href={commitInfo.url}

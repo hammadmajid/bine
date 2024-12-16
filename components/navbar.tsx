@@ -22,7 +22,7 @@ export function Navbar() {
     <>
       <a
         href="#main-content"
-        className="absolute -top-12 left-0 p-4 z-40 bg-light-body text-light-text-primary transition-all focus:top-0"
+        className="absolute -top-24 left-0 p-4 z-40 bg-light-body text-light-text-primary transition-all focus:top-0"
       >
         Skip to content
       </a>
