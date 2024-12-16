@@ -3,6 +3,7 @@ import { IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
+import { ViewTransitions } from "next-view-transitions";
 
 const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
@@ -24,14 +25,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full">
-      <body
-        className={`${ibmPlexMono.className} h-full flex flex-col antialiased max-w-screen-lg mx-auto`}
-      >
-        <Navbar />
-        <main className="px-4 py-6 flex-grow space-y-2">{children}</main>
-        <Footer />
-      </body>
-    </html>
+    <ViewTransitions>
+      <html lang="en" className="h-full">
+        <body
+          className={`${ibmPlexMono.className} h-full flex flex-col antialiased max-w-screen-lg mx-auto`}
+        >
+          <Navbar />
+          <main className="px-4 py-6 flex-grow space-y-2">{children}</main>
+          <Footer />
+        </body>
+      </html>
+    </ViewTransitions>
   );
 }
