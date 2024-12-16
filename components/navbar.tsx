@@ -2,11 +2,13 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pages: string[] = ["Links", "Projects", "Contact", "About"];
+  const pathname = usePathname();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -72,21 +74,25 @@ export function Navbar() {
               sm:items-center h-full sm:h-auto
             "
           >
-            {pages.map((page: string) => (
-              <li key={page} className="sm:inline-block">
-                <Link
-                  href={`/${page.toLowerCase()}`}
-                  className="
-                    block py-2 sm:py-0
-                    hover:text-light-accent
-                    focus:outline-none focus:text-light-accent
-                  "
-                  onClick={closeMenu}
-                >
-                  {page}
-                </Link>
-              </li>
-            ))}
+            {pages.map((page: string) => {
+              const isActive = pathname === `/${page.toLowerCase()}`;
+              return (
+                <li key={page} className="sm:inline-block">
+                  <Link
+                    href={`/${page.toLowerCase()}`}
+                    className={`
+                      block py-2 sm:py-0
+                      hover:text-light-accent
+                      focus:outline-none focus:text-light-accent
+                      ${isActive ? "text-light-accent" : ""}
+                    `}
+                    onClick={closeMenu}
+                  >
+                    {page}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </nav>
       </header>
