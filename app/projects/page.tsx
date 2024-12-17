@@ -5,7 +5,10 @@ import { Octokit } from "octokit";
 
 export const metadata: Metadata = {
   title: "Projects",
-  description: "",
+  description: "A showcase of various portfolio projects.",
+  alternates: {
+    canonical: "/projects",
+  },
 };
 
 export default async function ProjectsPage() {
